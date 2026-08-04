@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Leads &amp; Consent Dashboard — TruveriX</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,Arial,sans-serif;background:#F8FAFF;color:#1E293B}
+.topbar{background:#020B1D;color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:18px;font-weight:800}
+.logo .x{color:#38B6FF}
+.actions{display:flex;gap:10px;align-items:center}
+.btn{padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;border:none;cursor:pointer}
+.btn-p{background:linear-gradient(135deg,#2563EB,#38B6FF);color:#fff}
+.btn-g{background:transparent;color:#94A3B8;border:1px solid rgba(255,255,255,.2)}
+.wrap{padding:24px;max-width:1400px;margin:0 auto}
+.stats{display:flex;gap:16px;margin-bottom:20px}
+.stat{background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:16px 20px;flex:1}
+.stat-num{font-size:24px;font-weight:800;color:#2563EB}
+.stat-lbl{font-size:11px;color:#64748B;margin-top:4px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:12px}
+th{background:#EEF4FF;text-align:left;padding:10px 12px;font-weight:700;color:#020B1D;white-space:nowrap}
+td{padding:10px 12px;border-top:1px solid #E2E8F0;white-space:nowrap;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+tr:hover td{background:#F8FAFF}
+.pill{padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700}
+.pill-demo{background:#DBEAFE;color:#1D4ED8}
+.pill-contact{background:#EDE9FE;color:#7C3AED}
+.pill-yes{background:#DCFCE7;color:#15803D}
+.pill-no{background:#FEE2E2;color:#DC2626}
+.pager{display:flex;gap:8px;justify-content:center;margin-top:16px}
+.loading,.empty{text-align:center;padding:40px;color:#64748B;font-size:13px}
+.table-wrap{overflow-x:auto;border:1px solid #E2E8F0;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="logo">Truveri<span class="x">X</span> — Leads &amp; Consent</div>
+  <div class="actions">
+    <button class="btn btn-p" onclick="downloadExport()">Download CSV</button>
+    <button class="btn btn-g" onclick="logout()">Sign out</button>
+  </div>
+</div>
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="stat-num" id="stat-total">—</div><div class="stat-lbl">Rows on this page</div></div>
+    <div class="stat"><div class="stat-num" id="stat-page">—</div><div class="stat-lbl">Current page</div></div>
+  </div>
+  <div class="table-wrap">
+    <table id="leads-table">
+      <thead>
+        <tr>
+          <th>Submitted</th><th>Type</th><th>Name</th><th>Email</th><th>Phone</th>
+          <th>Company</th><th>Interest / Subject</th><th>Consent</th><th>Consent given at</th><th>IP</th>
+        </tr>
+      </thead>
+      <tbody id="leads-body">
+        <tr><td colspan="10" class="loading">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pager">
+    <button class="btn btn-g" style="color:#2563EB;border-color:#E2E8F0" onclick="changePage(-1)">← Previous</button>
+    <button class="btn btn-g" style="color:#2563EB;border-color:#E2E8F0" onclick="changePage(1)">Next →</button>
+  </div>
+</div>
+<script>
+var currentPage = 1;
+
+async function loadLeads() {
+  var body = document.getElementById('leads-body');
+  body.innerHTML = '<tr><td colspan="10" class="loading">Loading…</td></tr>';
+  var resp = await fetch('/api/admin/leads?page=' + currentPage);
+  if (resp.status === 401) { window.location.href = '/admin/index.html'; return; }
+  var data = await resp.json();
+  document.getElementById('stat-total').textContent = data.rows.length;
+  document.getElementById('stat-page').textContent = data.page;
+  if (!data.rows.length) {
+    body.innerHTML = '<tr><td colspan="10" class="empty">No leads on this page yet.</td></tr>';
+    return;
+  }
+  body.innerHTML = data.rows.map(function(r) {
+    var typePill = r.type === 'demo'
+      ? '<span class="pill pill-demo">Demo</span>'
+      : '<span class="pill pill-contact">Contact</span>';
+    var consentPill = r.consent_given === true
+      ? '<span class="pill pill-yes">Given</span>'
+      : '<span class="pill pill-no">No record</span>';
+    return '<tr>' +
+      '<td>' + (r.created_at || '') + '</td>' +
+      '<td>' + typePill + '</td>' +
+      '<td>' + [r.first_name, r.last_name].filter(Boolean).join(' ') + '</td>' +
+      '<td>' + (r.email || '') + '</td>' +
+      '<td>' + (r.phone || '') + '</td>' +
+      '<td>' + (r.company || '') + '</td>' +
+      '<td>' + (r.interest || '') + '</td>' +
+      '<td>' + consentPill + '</td>' +
+      '<td>' + (r.given_at || '') + '</td>' +
+      '<td>' + (r.ip_address || '') + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
+function changePage(delta) {
+  currentPage = Math.max(1, currentPage + delta);
+  loadLeads();
+}
+
+function downloadExport() {
+  window.location.href = '/api/admin/export';
+}
+
+async function logout() {
+  await fetch('/api/admin/logout', { method: 'POST' });
+  window.location.href = '/admin/index.html';
+}
+
+loadLeads();
+</script>
+</body>
+</html>

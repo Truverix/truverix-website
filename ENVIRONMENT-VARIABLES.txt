@@ -1,0 +1,30 @@
+# ── Supabase (Postgres, free tier) ─────────────────────────────────────────
+# From your Supabase project: Settings → API.
+# Use the service_role key here — NOT the anon/public key. The service_role
+# key is what lets the server write to tables protected by Row Level
+# Security. It must only ever live in Vercel's environment variables, never
+# in client-side code or in this repo.
+SUPABASE_URL=https://your-project-ref.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=paste-your-service-role-key-here
+
+# ── Admin login (for the /admin reporting dashboard) ──────────────────────
+# Do NOT put a plain password here. Generate a bcrypt hash locally (see README
+# "Step 6") and paste the hash — never the raw password — as the value below.
+ADMIN_USERNAME=admin
+# The password + hash below were freshly generated for you and are not used
+# anywhere else. Log in with the password once, then change it later by
+# generating a new hash the same way (see README "Rotating the admin password").
+# Password: Cobalt-Cipher-4781!T
+ADMIN_PASSWORD_HASH=$2a$10$XuMnEJaDUEeNW08KSn1x9e6Er11BFPv/w1Zro7J26RP5S3KHH6lWC
+ADMIN_JWT_SECRET=a04e09424b3fe9b323d4bf446679192b125322c3f4d30c5f08e2f8e98ddc842fbb040cdb632f84e7b89fbbb340fceb75
+
+# ── Cloudflare Turnstile (bot protection on the forms) ────────────────────
+# From the Cloudflare dashboard → Turnstile → your widget.
+TURNSTILE_SITE_KEY=0x0000000000000000000000
+TURNSTILE_SECRET_KEY=0x0000000000000000000000
+
+# ── Resend (email notification when a lead comes in) ──────────────────────
+# Optional but recommended. From resend.com → API Keys.
+RESEND_API_KEY=re_xxxxxxxxxxxx
+NOTIFY_EMAIL_TO=sales@truverix.com
+NOTIFY_EMAIL_FROM=noreply@truverix.com

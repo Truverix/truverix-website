@@ -1,0 +1,14 @@
+{
+  "name": "truverix-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TruveriX marketing site with lead capture, DPDPA consent logging, and admin reporting.",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3"
+  }
+}
