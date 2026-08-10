@@ -47,7 +47,7 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--text);font-size:
 .logo-tag{font-size:8px;letter-spacing:2px;color:var(--muted);font-weight:600;margin-top:2px}
 .logo-tag2{font-size:7.5px;letter-spacing:.4px;color:#94A3B8;font-weight:500;margin-top:1px;font-style:italic;white-space:nowrap}
 
-/* DROPDOWN NAV */
+
 .navlinks{display:flex;gap:2px;align-items:center}
 .nav-group{position:relative}
 .nav-group-label{padding:6px 12px;font-size:12px;color:var(--muted);cursor:pointer;border-radius:6px;transition:all .18s;white-space:nowrap;font-weight:600;display:flex;align-items:center;gap:5px;user-select:none}
@@ -60,10 +60,22 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--text);font-size:
 .nav-dd-item:hover{background:var(--bg3);color:var(--primary)}
 .nav-dd-item .dd-icon{font-size:14px;width:20px;text-align:center}
 .nav-dd-header{font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--muted);padding:6px 12px 3px;text-transform:uppercase}
+
+/* MEGA MENU (Solutions) */
+.nav-mega{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 16px 48px rgba(15,23,42,.14);width:640px;max-width:90vw;padding:22px 26px;z-index:300;opacity:0;visibility:hidden;transition:all .2s;display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
+.nav-mega.cols3{width:820px;grid-template-columns:1fr 1fr 1fr}
+.nav-group:hover .nav-mega,.nav-group.open .nav-mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-mega-col{display:flex;flex-direction:column}
+.nav-mega-cat{font-size:10px;font-weight:800;letter-spacing:1.3px;color:var(--muted);text-transform:uppercase;padding-bottom:10px;margin-bottom:6px;border-bottom:1px solid #F1F5F9}
+.nav-mega-item{display:flex;align-items:flex-start;gap:12px;padding:10px 8px;border-radius:10px;cursor:pointer;transition:background .15s;text-decoration:none}
+.nav-mega-item:hover{background:var(--bg3)}
+.nav-mega-ic{width:34px;height:34px;border-radius:9px;background:var(--bg3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;color:var(--primary)}
+.nav-mega-item:hover .nav-mega-ic{background:var(--grad);color:#fff}
+.nav-mega-t{font-size:11.5px;font-weight:700;color:var(--dark);line-height:1.3;margin-bottom:2px}
+.nav-mega-d{font-size:10.5px;color:var(--muted);line-height:1.5}
 .nav-plain{padding:6px 10px;font-size:12px;color:var(--muted);cursor:pointer;border-radius:6px;transition:all .18s;white-space:nowrap;font-weight:500}
 .nav-plain:hover,.nav-plain.act{color:var(--primary);background:var(--bg3)}
 .navcta{display:flex;gap:8px;align-items:center;flex-shrink:0}
-
 /* BUTTONS */
 .btn{padding:8px 18px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;transition:all .18s;border:none;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:5px}
 .btn-p{background:var(--grad);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.28)}
@@ -552,61 +564,211 @@ h3{font-size:15px;font-weight:600;color:var(--dark)}
     <a class="nav-plain act" href="/" onclick="go('hub')">All Services</a>
 
     <!-- Employment & Academic -->
-    <div class="nav-group" id="ng-employment">
-      <div class="nav-group-label" onclick="toggleGroup('ng-employment')">
-        Employment &amp; Academic
+     <!-- Featured Services -->
+    <div class="nav-group" id="ng-featured">
+      <div class="nav-group-label" onclick="toggleGroup('ng-featured')">
+        Featured Services
         <svg class="arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item" href="/employment-verification" onclick="go('employment')"><span class="dd-icon">💼</span>Employment Verification</a>
-        <a class="nav-dd-item" href="/education-verification" onclick="go('education')"><span class="dd-icon">🎓</span>Education Verification</a>
-        <a class="nav-dd-item" href="/reference-check" onclick="go('reference')"><span class="dd-icon">🤝</span>Reference Check</a>
+      <div class="nav-mega cols3" style="width:700px; ">
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Employment &amp; Academics</div>
+          <a class="nav-mega-item" href="/employment-verification" onclick="go('employment')">
+            <span class="nav-mega-ic">💼</span>
+            <span class="nav-mega-t">Employment Verification</span>
+           
+          </a>
+          <a class="nav-mega-item" href="/education-verification" onclick="go('education')">
+            <span class="nav-mega-ic">🎓</span>
+            <span class="nav-mega-t">Education Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/reference-check" onclick="go('reference')">
+            <span class="nav-mega-ic">🤝</span>
+            <span class="nav-mega-t">Reference Check</span>
+            
+          </a>
+        </div>
+
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Identity &amp; Document</div>
+          <a class="nav-mega-item" href="/instant-check" onclick="go('instant')">
+            <span class="nav-mega-ic">⚡</span>
+            <span class="nav-mega-t">Instant Check</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/identity-verification" onclick="go('identity')">
+            <span class="nav-mega-ic">🪪</span>
+            <span class="nav-mega-t">Identity Verification / KYC</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/video-kyc" onclick="go('videokyc')">
+            <span class="nav-mega-ic">📹</span>
+            <span class="nav-mega-t">Video KYC &amp; Liveness</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/face-match-verification" onclick="go('facematch')">
+            <span class="nav-mega-ic">👤</span>
+            <span><span class="nav-mega-t">Face Match Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/document-verification" onclick="go('document')">
+            <span class="nav-mega-ic">📄</span>
+            <span><span class="nav-mega-t">Document Authentication</span>
+            
+          </a>
+        </div>
+
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">More BGV Services...</div>
+          <a class="nav-mega-item" href="/drug-alcohol-testing" onclick="go('instant')">
+            <span class="nav-mega-ic">⚡</span>
+            <span class="nav-mega-t">Drug and Alcohol testing</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/fraud-detection" onclick="go('identity')">
+            <span class="nav-mega-ic">🪪</span>
+            <span class="nav-mega-t">AI Fraud Detection</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/global-background-check" onclick="go('videokyc')">
+            <span class="nav-mega-ic">📹</span>
+            <span class="nav-mega-t">Global Database Check</span>
+            
+          </a>
+          
+        </div>
+        
       </div>
     </div>
 
-    <!-- Identity & Document -->
+    <!-- Identity & Document
     <div class="nav-group" id="ng-identity">
       <div class="nav-group-label" onclick="toggleGroup('ng-identity')">
         Identity &amp; Document
         <svg class="arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item" href="/instant-check" onclick="go('instant')"><span class="dd-icon">⚡</span>Instant Check</a>
-        <a class="nav-dd-item" href="/identity-verification" onclick="go('identity')"><span class="dd-icon">🪪</span>Identity Verification / KYC</a>
-        <a class="nav-dd-item" href="/video-kyc" onclick="go('videokyc')"><span class="dd-icon">📹</span>Video KYC &amp; Liveness</a>
-        <a class="nav-dd-item" href="/face-match-verification" onclick="go('facematch')"><span class="dd-icon">👤</span>Face Match Verification</a>
-        <a class="nav-dd-item" href="/document-verification" onclick="go('document')"><span class="dd-icon">📄</span>Document Authentication</a>
+      <div class="nav-mega" style="width:520px">
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Identity Verification</div>
+          <a class="nav-mega-item" href="/instant-check" onclick="go('instant')">
+            <span class="nav-mega-ic">⚡</span>
+            <span><span class="nav-mega-t">Instant Check</span>
+          </a>
+          <a class="nav-mega-item" href="/identity-verification" onclick="go('identity')">
+            <span class="nav-mega-ic">🪪</span>
+            <span><span class="nav-mega-t">Identity Verification / KYC</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/video-kyc" onclick="go('videokyc')">
+            <span class="nav-mega-ic">📹</span>
+            <span><span class="nav-mega-t">Video KYC &amp; Liveness</span>
+            
+          </a>
+        </div>
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Document &amp; Biometric</div>
+          <a class="nav-mega-item" href="/face-match-verification" onclick="go('facematch')">
+            <span class="nav-mega-ic">👤</span>
+            <span><span class="nav-mega-t">Face Match Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/document-verification" onclick="go('document')">
+            <span class="nav-mega-ic">📄</span>
+            <span><span class="nav-mega-t">Document Authentication</span>
+            
+          </a>
+        </div>
       </div>
-    </div>
+    </div>-->
 
-    <!-- Legal & Compliance -->
-    <div class="nav-group" id="ng-legal">
-      <div class="nav-group-label" onclick="toggleGroup('ng-legal')">
-        Legal &amp; Compliance
+    <!-- Solutions (mega menu: Legal & Compliance + Business & Financial) -->
+    <div class="nav-group" id="ng-solutions">
+      <div class="nav-group-label" onclick="toggleGroup('ng-solutions')">
+        Solutions
         <svg class="arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item" href="/criminal-verification" onclick="go('criminal')"><span class="dd-icon">⚖️</span>Criminal Verification</a>
-        <a class="nav-dd-item" href="/court-record-check" onclick="go('court')"><span class="dd-icon">🏛️</span>Court Record Check</a>
-        <a class="nav-dd-item" href="/aml-screening" onclick="go('aml')"><span class="dd-icon">🛡️</span>AML &amp; Sanctions Screening</a>
-        <a class="nav-dd-item" href="/fraud-detection" onclick="go('fraud')"><span class="dd-icon">🔍</span>AI Fraud Detection</a>
-        <a class="nav-dd-item" href="/global-background-check" onclick="go('global')"><span class="dd-icon">🌐</span>Global Database Check</a>
-      </div>
-    </div>
+      <div class="nav-mega cols3">
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Employment &amp; Academics</div>
+          <a class="nav-mega-item" href="/employment-verification" onclick="go('employment')">
+            <span class="nav-mega-ic">💼</span>
+            <span class="nav-mega-t">Employment Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/education-verification" onclick="go('education')">
+            <span class="nav-mega-ic">🎓</span>
+            <span class="nav-mega-t">Education Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/reference-check" onclick="go('reference')">
+            <span class="nav-mega-ic">🤝</span>
+            <span class="nav-mega-t">Reference Check</span>
+            
+          </a>
+        </div>
 
-    <!-- Business & Financial -->
-    <div class="nav-group" id="ng-business">
-      <div class="nav-group-label" onclick="toggleGroup('ng-business')">
-        Business &amp; Financial
-        <svg class="arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </div>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item" href="/vendor-due-diligence" onclick="go('vendor')"><span class="dd-icon">🏢</span>Vendor Due Diligence (KYB)</a>
-        <a class="nav-dd-item" href="/bank-account-verification" onclick="go('bank')"><span class="dd-icon">🏦</span>Bank Account Verification</a>
-        <a class="nav-dd-item" href="/gst-verification" onclick="go('gst')"><span class="dd-icon">📊</span>GST Verification</a>
-        <a class="nav-dd-item" href="/address-verification" onclick="go('address')"><span class="dd-icon">🏠</span>Address Verification</a>
-        <a class="nav-dd-item" href="/drug-alcohol-testing" onclick="go('drug')"><span class="dd-icon">🧪</span>Drug &amp; Alcohol Testing</a>
-        <a class="nav-dd-item" href="/api-verification" onclick="go('api')"><span class="dd-icon">⚡</span>API Verification</a>
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Legal &amp; Compliance</div>
+          <a class="nav-mega-item" href="/criminal-verification" onclick="go('criminal')">
+            <span class="nav-mega-ic">⚖️</span>
+            <span class="nav-mega-t">Criminal Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/aml-screening" onclick="go('aml')">
+            <span class="nav-mega-ic">🛡️</span>
+            <span class="nav-mega-t">AML &amp; Sanctions</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/fraud-detection" onclick="go('fraud')">
+            <span class="nav-mega-ic">🔍</span>
+            <span class="nav-mega-t">AI Fraud Detection</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/court-record-check" onclick="go('court')">
+            <span class="nav-mega-ic">🏛️</span>
+            <span class="nav-mega-t">Court Record Check</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/global-background-check" onclick="go('global')">
+            <span class="nav-mega-ic">🌐</span>
+           <span class="nav-mega-t">Global Database Check</span>
+            
+          </a>
+        </div>
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Business &amp; Financial</div>
+          <a class="nav-mega-item" href="/vendor-due-diligence" onclick="go('vendor')">
+            <span class="nav-mega-ic">🏢</span>
+            <span class="nav-mega-t">Vendor Due Diligence</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/bank-account-verification" onclick="go('bank')">
+            <span class="nav-mega-ic">🏦</span>
+            <span class="nav-mega-t">Bank Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/api-verification" onclick="go('api')">
+            <span class="nav-mega-ic">⚡</span>
+            <span class="nav-mega-t">API Integration</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/gst-verification" onclick="go('gst')">
+            <span class="nav-mega-ic">📊</span>
+            <span class="nav-mega-t">GST Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/address-verification" onclick="go('address')">
+            <span class="nav-mega-ic">🏠</span>
+            <span class="nav-mega-t">Address Verification</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/drug-alcohol-testing" onclick="go('drug')">
+            <span class="nav-mega-ic">🧪</span>
+            <span class="nav-mega-t">Drug &amp; Alcohol Testing</span>
+            
+          </a>
+        </div>
       </div>
     </div>
 
@@ -616,21 +778,58 @@ h3{font-size:15px;font-weight:600;color:var(--dark)}
         Company
         <svg class="arrow" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
-      <div class="nav-dropdown" style="min-width:200px">
-        <div class="nav-dd-header">About</div>
-        <a class="nav-dd-item" href="/company" onclick="go('company')"><span class="dd-icon">🏢</span>About TruveriX</a>
-        <a class="nav-dd-item" href="/company" onclick="go('company')"><span class="dd-icon">🎯</span>Vision &amp; Mission</a>
-        <a class="nav-dd-item" href="/company" onclick="go('company')"><span class="dd-icon">💡</span>Core Values</a>
-        <div class="nav-dd-header" style="margin-top:4px">Contact</div>
-        <a class="nav-dd-item" href="/contact" onclick="go('contact')"><span class="dd-icon">📬</span>Contact Us</a>
-        <div class="nav-dd-header" style="margin-top:4px;border-top:1px solid #E2E8F0;padding-top:8px">Legal</div>
-        <a class="nav-dd-item" href="/privacy-policy" onclick="go('privacy')"><span class="dd-icon">🔒</span>Privacy Policy</a>
-        <a class="nav-dd-item" href="/cookie-policy" onclick="go('cookie')"><span class="dd-icon">🍪</span>Cookie Policy</a>
-        <a class="nav-dd-item" href="/terms-of-service" onclick="go('terms')"><span class="dd-icon">📋</span>Terms of Service</a>
-        <a class="nav-dd-item" href="/dpdpa-compliance" onclick="go('dpdpa')"><span class="dd-icon">🛡️</span>DPDPA Compliance</a>
-        <a class="nav-dd-item" href="/security-policy" onclick="go('security')"><span class="dd-icon">🔐</span>Security Policy</a>
+      <div class="nav-mega" style="width:480px">
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">About</div>
+          <a class="nav-mega-item" href="/company" onclick="go('company')">
+            <span class="nav-mega-ic">🏢</span>
+            <span class="nav-mega-t">About TruveriX</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/company" onclick="go('company')">
+            <span class="nav-mega-ic">🎯</span>
+            <span class="nav-mega-t">Vision &amp; Mission</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/company" onclick="go('company')">
+            <span class="nav-mega-ic">💡</span>
+            <span class="nav-mega-t">Core Values</span>
+            
+          </a>
+          
+        </div>
+        <div class="nav-mega-col">
+          <div class="nav-mega-cat">Legal</div>
+          <a class="nav-mega-item" href="/privacy-policy" onclick="go('privacy')">
+            <span class="nav-mega-ic">🔒</span>
+            <span class="nav-mega-t">Privacy Policy</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/cookie-policy" onclick="go('cookie')">
+            <span class="nav-mega-ic">🍪</span>
+            <span class="nav-mega-t">Cookie Policy</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/terms-of-service" onclick="go('terms')">
+            <span class="nav-mega-ic">📋</span>
+            <span class="nav-mega-t">Terms of Service</span>
+            
+          </a>
+          <a class="nav-mega-item" href="/dpdpa-compliance" onclick="go('dpdpa')">
+            <span class="nav-mega-ic">🛡️</span>
+            
+              <span class="nav-mega-t">DPDPA Compliance</span>
+              
+          </a>
+          <a class="nav-mega-item" href="/security-policy" onclick="go('security')">
+            <span class="nav-mega-ic">🔐</span>
+            <span class="nav-mega-t">Security Policy</span>
+          </a>
+        </div>
       </div>
     </div>
+
+    <a class="nav-group-label" href="/contact" onclick="go('contact')" style="text-decoration: none;">Contact</a>
 
   </div>
 
