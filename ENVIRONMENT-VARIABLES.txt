@@ -14,9 +14,9 @@ ADMIN_USERNAME=admin
 # The password + hash below were freshly generated for you and are not used
 # anywhere else. Log in with the password once, then change it later by
 # generating a new hash the same way (see README "Rotating the admin password").
-# Password: Cobalt-Cipher-4781!T
-ADMIN_PASSWORD_HASH=$2a$10$XuMnEJaDUEeNW08KSn1x9e6Er11BFPv/w1Zro7J26RP5S3KHH6lWC
-ADMIN_JWT_SECRET=a04e09424b3fe9b323d4bf446679192b125322c3f4d30c5f08e2f8e98ddc842fbb040cdb632f84e7b89fbbb340fceb75
+# Password: Quartz-Vortex-1463!H
+ADMIN_PASSWORD_HASH=$2a$10$jdXSSQ2KpQzZ4tVpU1XWHOvhltWAAJ1hxWzZB2yQVTvg19gZVlvQa
+ADMIN_JWT_SECRET=dbc4f21e4537904421cffd17ad88ef8b816c2f0561da2b99f4be549201e47530295825d8451734b36ebf36191f6936dd
 
 # ── Cloudflare Turnstile (bot protection on the forms) ────────────────────
 # From the Cloudflare dashboard → Turnstile → your widget.
