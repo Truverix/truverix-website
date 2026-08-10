@@ -76,7 +76,7 @@ You now have: `RESEND_API_KEY`.
 4. Before clicking Deploy, open **Environment Variables** and add every value from `ENVIRONMENT-VARIABLES.txt` in this repo (real values, not placeholders) — `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH`, `ADMIN_JWT_SECRET`, `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY`, and the Resend ones if using Step 4.
 5. Click **Deploy**.
 6. **Important:** once it's live, go to **Settings → General → your plan** and upgrade to **Pro ($20/month)**. Vercel's free Hobby plan is restricted to non-commercial personal projects in their Terms of Service — a company lead-gen site doesn't qualify, so Pro is the correct plan here even before you have revenue.
-7. Open `index.html` in this repo (before or after upload) and replace both instances of `TURNSTILE_SITE_KEY_PLACEHOLDER` with your real Turnstile site key from Step 3, then re-upload that one file to GitHub — Vercel will redeploy automatically.
+7. Open `index.html` in this repo (before or after upload) and replace both instances of `0x4AAAAAAEFeCT362VFkeABl` with your real Turnstile site key from Step 3, then re-upload that one file to GitHub — Vercel will redeploy automatically.
 
 ---
 
